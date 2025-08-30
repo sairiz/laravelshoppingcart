@@ -50,7 +50,7 @@ class CartTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(100.99, $this->cart->getContent()->first()['price'], 'Item added has price of 100.99 so first content price should be 100.99');
     }
 
-    public function test_cart_can_add_items_as_[]
+    public function test_cart_can_add_items_as_array()
     {
         $item = array(
             'id' => 456,
@@ -68,7 +68,7 @@ class CartTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('Sample Item', $this->cart->getContent()->first()['name'], 'The first content must have name of "Sample Item"');
     }
 
-    public function test_cart_can_add_items_with_multidimensional_[]
+    public function test_cart_can_add_items_with_multidimensional_array()
     {
         $items = array(
             array(

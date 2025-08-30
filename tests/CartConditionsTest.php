@@ -189,7 +189,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
         $this->assertEquals(149.05375, $this->cart->getTotal(), 'Cart should have a total of 149.05375');
     }
 
-    public function test_cart_multiple_conditions_can_be_added_once_by_[]
+    public function test_cart_multiple_conditions_can_be_added_once_by_array()
     {
         $this->fillCart();
 
