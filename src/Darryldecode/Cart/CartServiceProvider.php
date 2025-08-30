@@ -32,8 +32,7 @@ class CartServiceProvider extends ServiceProvider {
 	{
 		$this->mergeConfigFrom(__DIR__.'/config/config.php', 'shopping_cart');
 
-		$this->app->singleton('cart', function($app)
-		{
+		$this->app->singleton('cart', function ($app) {
             $storageClass = config('shopping_cart.storage');
             $eventsClass = config('shopping_cart.events');
 
@@ -58,11 +57,9 @@ class CartServiceProvider extends ServiceProvider {
 
 	/**
 	 * Get the services provided by the provider.
-	 *
-	 * @return array
 	 */
-	public function provides()
+	public function provides(): array
 	{
-		return array();
+		return [];
 	}
 }

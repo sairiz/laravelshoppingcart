@@ -42,7 +42,7 @@ class CartTest extends PHPUnit\Framework\TestCase
 
     public function test_cart_can_add_item()
     {
-        $this->cart->add(455, 'Sample Item', 100.99, 2, array());
+        $this->cart->add(455, 'Sample Item', 100.99, 2, []);
 
         $this->assertFalse($this->cart->isEmpty(), 'Cart should not be empty');
         $this->assertEquals(1, $this->cart->getContent()->count(), 'Cart content should be 1');
@@ -50,14 +50,14 @@ class CartTest extends PHPUnit\Framework\TestCase
         $this->assertEquals(100.99, $this->cart->getContent()->first()['price'], 'Item added has price of 100.99 so first content price should be 100.99');
     }
 
-    public function test_cart_can_add_items_as_array()
+    public function test_cart_can_add_items_as_[]
     {
         $item = array(
             'id' => 456,
             'name' => 'Sample Item',
             'price' => 67.99,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         );
 
         $this->cart->add($item);
@@ -68,7 +68,7 @@ class CartTest extends PHPUnit\Framework\TestCase
         $this->assertEquals('Sample Item', $this->cart->getContent()->first()['name'], 'The first content must have name of "Sample Item"');
     }
 
-    public function test_cart_can_add_items_with_multidimensional_array()
+    public function test_cart_can_add_items_with_multidimensional_[]
     {
         $items = array(
             array(
@@ -76,21 +76,21 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 4,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 568,
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 4,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 856,
                 'name' => 'Sample Item 3',
                 'price' => 50.25,
                 'quantity' => 4,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
@@ -178,14 +178,14 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 3,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 568,
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
@@ -219,7 +219,7 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 3,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
@@ -243,7 +243,7 @@ class CartTest extends PHPUnit\Framework\TestCase
     public function test_item_price_should_be_normalized_when_added_to_cart()
     {
         // add a price in a string format should be converted to float
-        $this->cart->add(455, 'Sample Item', '100.99', 2, array());
+        $this->cart->add(455, 'Sample Item', '100.99', 2, []);
 
         $this->assertIsFloat($this->cart->getContent()->first()['price'], 'Cart price should be a float');
     }
@@ -256,21 +256,21 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 4,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 568,
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 4,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 856,
                 'name' => 'Sample Item 3',
                 'price' => 50.25,
                 'quantity' => 4,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
@@ -292,21 +292,21 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 568,
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 856,
                 'name' => 'Sample Item 3',
                 'price' => 50.25,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
@@ -328,14 +328,14 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 3,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 568,
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
@@ -357,14 +357,14 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 3,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 568,
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
@@ -390,14 +390,14 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 3,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 568,
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
@@ -419,19 +419,19 @@ class CartTest extends PHPUnit\Framework\TestCase
     public function test_should_throw_exception_when_provided_invalid_values_scenario_one()
     {
         $this->expectException('Darryldecode\Cart\Exceptions\InvalidItemException');
-        $this->cart->add(455, 'Sample Item', 100.99, 0, array());
+        $this->cart->add(455, 'Sample Item', 100.99, 0, []);
     }
 
     public function test_should_throw_exception_when_provided_invalid_values_scenario_two()
     {
         $this->expectException('Darryldecode\Cart\Exceptions\InvalidItemException');
-        $this->cart->add('', 'Sample Item', 100.99, 2, array());
+        $this->cart->add('', 'Sample Item', 100.99, 2, []);
     }
 
     public function test_should_throw_exception_when_provided_invalid_values_scenario_three()
     {
         $this->expectException('Darryldecode\Cart\Exceptions\InvalidItemException');
-        $this->cart->add(523, '', 100.99, 2, array());
+        $this->cart->add(523, '', 100.99, 2, []);
     }
 
     public function test_clearing_cart()
@@ -442,14 +442,14 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 3,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 568,
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
@@ -471,14 +471,14 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 3,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 568,
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
@@ -498,7 +498,7 @@ class CartTest extends PHPUnit\Framework\TestCase
             'name' => 'Sample Item',
             'price' => 67.99,
             'quantity' => 4,
-            'attributes' => array(),
+            'attributes' => [],
             'associatedModel' => MockProduct::class
         );
 
@@ -521,7 +521,7 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 4,
-                'attributes' => array(),
+                'attributes' => [],
                 'associatedModel' => MockProduct::class
             ),
             array(
@@ -529,7 +529,7 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 4,
-                'attributes' => array(),
+                'attributes' => [],
                 'associatedModel' => MockProduct::class
             ),
             array(
@@ -537,7 +537,7 @@ class CartTest extends PHPUnit\Framework\TestCase
                 'name' => 'Sample Item 3',
                 'price' => 50.25,
                 'quantity' => 4,
-                'attributes' => array(),
+                'attributes' => [],
                 'associatedModel' => MockProduct::class
             ),
         );

@@ -78,9 +78,9 @@ class CartCondition {
      *
      * @return array
      */
-    public function getAttributes()
+    public function getAttributes(): array
     {
-        return (isset($this->args['attributes'])) ? $this->args['attributes'] : array();
+        return $this->args['attributes'] ?? [];
     }
 
     /**
@@ -250,7 +250,7 @@ class CartCondition {
      */
     protected function cleanValue($value)
     {
-        return str_replace(array('%','-','+'),'',$value);
+        return str_replace(['%','-','+'],'',$value);
     }
 
     /**
@@ -261,11 +261,11 @@ class CartCondition {
      */
     protected function validate($args)
     {
-        $rules = array(
+        $rules = [
             'name' => 'required',
             'type' => 'required',
             'value' => 'required',
-        );
+        ];
 
         $validator = CartConditionValidator::make($args, $rules);
 

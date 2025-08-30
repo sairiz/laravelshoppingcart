@@ -23,7 +23,7 @@ afterEach(function () {
 });
 
 it('can get item sum price using property with other format', function () {
-    $this->cart->add(455, 'Sample Item', 100.99, 2, array());
+    $this->cart->add(455, 'Sample Item', 100.99, 2, []);
 
     $item = $this->cart->get(455);
 
@@ -31,7 +31,7 @@ it('can get item sum price using property with other format', function () {
 });
 
 it('can get item sum price using array style with other format', function () {
-    $this->cart->add(455, 'Sample Item', 100.99, 2, array());
+    $this->cart->add(455, 'Sample Item', 100.99, 2, []);
 
     $item = $this->cart->get(455);
 

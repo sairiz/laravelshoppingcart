@@ -29,21 +29,21 @@ it('can calculate cart sub total with other format', function () {
             'name' => 'Sample Item 1',
             'price' => 67.99,
             'quantity' => 1,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 568,
             'name' => 'Sample Item 2',
             'price' => 69.25,
             'quantity' => 1,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 856,
             'name' => 'Sample Item 3',
             'price' => 50.25,
             'quantity' => 1,
-            'attributes' => array()
+            'attributes' => []
         ),
     );
 
@@ -64,14 +64,14 @@ it('updates sub total when item quantity is updated', function () {
             'name' => 'Sample Item 1',
             'price' => 67.99,
             'quantity' => 3,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 568,
             'name' => 'Sample Item 2',
             'price' => 69.25,
             'quantity' => 1,
-            'attributes' => array()
+            'attributes' => []
         ),
     );
 
@@ -92,14 +92,14 @@ it('updates sub total when item quantity is reduced', function () {
             'name' => 'Sample Item 1',
             'price' => 67.99,
             'quantity' => 3,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 568,
             'name' => 'Sample Item 2',
             'price' => 69.25,
             'quantity' => 1,
-            'attributes' => array()
+            'attributes' => []
         ),
     );
 
