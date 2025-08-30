@@ -38,21 +38,21 @@ it('supports multiple cart instances', function () {
             'name' => 'Sample Item 1',
             'price' => 67.99,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 568,
             'name' => 'Sample Item 2',
             'price' => 69.25,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 856,
             'name' => 'Sample Item 3',
             'price' => 50.25,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
     );
 
@@ -69,7 +69,7 @@ it('supports multiple cart instances', function () {
             'name' => 'Sample Item 1',
             'price' => 67.99,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
     );
 

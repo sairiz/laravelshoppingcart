@@ -21,7 +21,7 @@ uses()->in(__DIR__);
 */
 
 if (!function_exists('mockSession')) {
-    function mockSession() {
+    function mockSession(): SessionMock {
         require_once __DIR__.'/helpers/SessionMock.php';
         return new SessionMock();
     }
@@ -36,13 +36,13 @@ if (!function_exists('mockEvents')) {
 }
 
 if (!function_exists('mockConfig')) {
-    function mockConfig() {
+    function mockConfig(): array {
         return require(__DIR__.'/helpers/configMock.php');
     }
 }
 
 if (!function_exists('createCart')) {
-    function createCart($instance = 'shopping', $sessionKey = 'SAMPLESESSIONKEY', $config = null) {
+    function createCart(string $instance = 'shopping', string $sessionKey = 'SAMPLESESSIONKEY', ?array $config = null): \Darryldecode\Cart\Cart {
         return new \Darryldecode\Cart\Cart(
             mockSession(),
             mockEvents(),

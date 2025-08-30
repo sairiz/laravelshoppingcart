@@ -1,4 +1,4 @@
-# Laravel 10+ Shopping Cart with AI Development Support
+# Laravel 12+ Shopping Cart with AI Development Support
 [![Build Status](https://travis-ci.org/darryldecode/laravelshoppingcart.svg?branch=master)](https://travis-ci.org/darryldecode/laravelshoppingcart)
 [![Total Downloads](https://poser.pugx.org/darryldecode/cart/d/total.svg)](https://packagist.org/packages/darryldecode/cart)
 [![License](https://poser.pugx.org/darryldecode/cart/license.svg)](https://packagist.org/packages/darryldecode/cart)
@@ -8,15 +8,15 @@ A Shopping Cart Implementation for Laravel Framework with modern AI development 
 ## 🚀 NEW: AI Development Ready
 
 This package has been modernized to support AI-assisted development:
-- **Pest PHP v3** for elegant testing
+- **Pest PHP v4** for elegant testing
 - **Laravel Boost** for AI development acceleration
 - **GitHub Copilot** compatibility
-- **Modern PHP 8.1+** and **Laravel 10+** support
+- **Modern PHP 8.4+** and **Laravel 12+** support
 
 ## Requirements
 
-- **PHP 8.1+**
-- **Laravel 10.0+**
+- **PHP 8.4+**
+- **Laravel 12.0+**
 
 ## QUICK PARTIAL DEMO
 

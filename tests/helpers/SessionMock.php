@@ -1,26 +1,20 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: darryl
- * Date: 1/12/2015
- * Time: 10:23 PM
- */
 
-class SessionMock {
+class SessionMock
+{
+    protected array $session = [];
 
-    protected $session = array();
-
-    public function has($key)
+    public function has(string $key): bool
     {
         return isset($this->session[$key]);
     }
 
-    public function get($key)
+    public function get(string $key): mixed
     {
-        return (isset($this->session[$key])) ? $this->session[$key] : null;
+        return $this->session[$key] ?? null;
     }
 
-    public function put($key, $value)
+    public function put(string $key, mixed $value): void
     {
         $this->session[$key] = $value;
     }

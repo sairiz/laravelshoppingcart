@@ -40,7 +40,7 @@ it('fires cart adding and added events', function () {
         require(__DIR__.'/helpers/configMock.php')
     );
 
-    $cart->add(455, 'Sample Item', 100.99, 2, array());
+    $cart->add(455, 'Sample Item', 100.99, 2, []);
 
     expect(true)->toBeTrue();
 });
@@ -59,8 +59,8 @@ it('fires events multiple times when adding multiple items', function () {
         require(__DIR__.'/helpers/configMock.php')
     );
 
-    $cart->add(455, 'Sample Item 1', 100.99, 2, array());
-    $cart->add(562, 'Sample Item 2', 100.99, 2, array());
+    $cart->add(455, 'Sample Item 1', 100.99, 2, []);
+    $cart->add(562, 'Sample Item 2', 100.99, 2, []);
 
     expect(true)->toBeTrue();
 });
@@ -77,21 +77,21 @@ it('fires events for adding multiple items in single call', function () {
             'name' => 'Sample Item 1',
             'price' => 67.99,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 568,
             'name' => 'Sample Item 2',
             'price' => 69.25,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 856,
             'name' => 'Sample Item 3',
             'price' => 50.25,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
     );
 
@@ -122,21 +122,21 @@ it('fires events when removing cart item', function () {
             'name' => 'Sample Item 1',
             'price' => 67.99,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 568,
             'name' => 'Sample Item 2',
             'price' => 69.25,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 856,
             'name' => 'Sample Item 3',
             'price' => 50.25,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
     );
 
@@ -169,21 +169,21 @@ it('fires events when clearing cart', function () {
             'name' => 'Sample Item 1',
             'price' => 67.99,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 568,
             'name' => 'Sample Item 2',
             'price' => 69.25,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
         array(
             'id' => 856,
             'name' => 'Sample Item 3',
             'price' => 50.25,
             'quantity' => 4,
-            'attributes' => array()
+            'attributes' => []
         ),
     );
 

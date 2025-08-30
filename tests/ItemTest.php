@@ -25,7 +25,7 @@ afterEach(function () {
 });
 
 it('can get item sum price using property', function () {
-    $this->cart->add(455, 'Sample Item', 100.99, 2, array());
+    $this->cart->add(455, 'Sample Item', 100.99, 2, []);
 
     $item = $this->cart->get(455);
 
@@ -33,7 +33,7 @@ it('can get item sum price using property', function () {
 });
 
 it('can get item sum price using array style', function () {
-    $this->cart->add(455, 'Sample Item', 100.99, 2, array());
+    $this->cart->add(455, 'Sample Item', 100.99, 2, []);
 
     $item = $this->cart->get(455);
 
@@ -41,7 +41,7 @@ it('can get item sum price using array style', function () {
 });
 
 it('returns empty conditions when item has no conditions', function () {
-    $this->cart->add(455, 'Sample Item', 100.99, 2, array());
+    $this->cart->add(455, 'Sample Item', 100.99, 2, []);
 
     $item = $this->cart->get(455);
 
@@ -63,7 +63,7 @@ it('can get item conditions when item has conditions', function () {
         'value' => '-25',
     ));
 
-    $this->cart->add(455, 'Sample Item', 100.99, 2, array(), [$itemCondition1, $itemCondition2]);
+    $this->cart->add(455, 'Sample Item', 100.99, 2, [], [$itemCondition1, $itemCondition2]);
 
     $item = $this->cart->get(455);
 
@@ -71,7 +71,7 @@ it('can get item conditions when item has conditions', function () {
 });
 
 it('can associate model to item', function () {
-    $this->cart->add(455, 'Sample Item', 100.99, 2, array())->associate(MockProduct::class);
+    $this->cart->add(455, 'Sample Item', 100.99, 2, [])->associate(MockProduct::class);
 
     $item = $this->cart->get(455);
 
@@ -84,7 +84,7 @@ it('throws exception when associating non-existing model', function () {
 });
 
 it('can get associated model instance', function () {
-    $this->cart->add(455, 'Sample Item', 100.99, 2, array())->associate(MockProduct::class);
+    $this->cart->add(455, 'Sample Item', 100.99, 2, [])->associate(MockProduct::class);
 
     $item = $this->cart->get(455);
 
@@ -94,7 +94,7 @@ it('can get associated model instance', function () {
 });
 
 it('returns null model when item has no associated model', function () {
-    $this->cart->add(455, 'Sample Item', 100.99, 2, array());
+    $this->cart->add(455, 'Sample Item', 100.99, 2, []);
 
     $item = $this->cart->get(455);
 

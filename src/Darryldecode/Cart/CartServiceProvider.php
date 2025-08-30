@@ -2,19 +2,12 @@
 
 use Illuminate\Support\ServiceProvider;
 
-class CartServiceProvider extends ServiceProvider {
-
-	/**
-	 * Indicates if loading of the provider is deferred.
-	 *
-	 * @var bool
-	 */
-	protected $defer = false;
-
+class CartServiceProvider extends ServiceProvider
+{
 	/**
 	 * Boot the service provider.
 	 */
-	public function boot()
+	public function boot(): void
 	{
 		if (function_exists('config_path')) {
 			$this->publishes([
@@ -25,15 +18,12 @@ class CartServiceProvider extends ServiceProvider {
 
 	/**
 	 * Register the service provider.
-	 *
-	 * @return void
 	 */
-	public function register()
+	public function register(): void
 	{
 		$this->mergeConfigFrom(__DIR__.'/config/config.php', 'shopping_cart');
 
-		$this->app->singleton('cart', function($app)
-		{
+		$this->app->singleton('cart', function ($app) {
             $storageClass = config('shopping_cart.storage');
             $eventsClass = config('shopping_cart.events');
 
@@ -58,11 +48,9 @@ class CartServiceProvider extends ServiceProvider {
 
 	/**
 	 * Get the services provided by the provider.
-	 *
-	 * @return array
 	 */
-	public function provides()
+	public function provides(): array
 	{
-		return array();
+		return [];
 	}
 }

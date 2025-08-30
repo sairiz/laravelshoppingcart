@@ -15,70 +15,48 @@ class Cart
 
     /**
      * the item storage
-     *
-     * @var
      */
-    protected $session;
+    protected mixed $session;
 
     /**
      * the event dispatcher
-     *
-     * @var
      */
-    protected $events;
+    protected mixed $events;
 
     /**
      * the cart session key
-     *
-     * @var
      */
-    protected $instanceName;
+    protected string $instanceName;
 
     /**
      * the session key use for the cart
-     *
-     * @var
      */
-    protected $sessionKey;
+    protected string $sessionKey;
 
     /**
      * the session key use to persist cart items
-     *
-     * @var
      */
-    protected $sessionKeyCartItems;
+    protected string $sessionKeyCartItems;
 
     /**
      * the session key use to persist cart conditions
-     *
-     * @var
      */
-    protected $sessionKeyCartConditions;
+    protected string $sessionKeyCartConditions;
 
     /**
      * Configuration to pass to ItemCollection
-     *
-     * @var
      */
-    protected $config;
+    protected array $config;
 
     /**
      * This holds the currently added item id in cart for association
-     * 
-     * @var
      */
-    protected $currentItemId;
+    protected mixed $currentItemId;
 
     /**
      * our object constructor
-     *
-     * @param $session
-     * @param $events
-     * @param $instanceName
-     * @param $session_key
-     * @param $config
      */
-    public function __construct($session, $events, $instanceName, $session_key, $config)
+    public function __construct(mixed $session, mixed $events, string $instanceName, string $session_key, array $config)
     {
         $this->events = $events;
         $this->session = $session;
@@ -94,11 +72,9 @@ class Cart
     /**
      * sets the session key
      *
-     * @param string $sessionKey the session key or identifier
-     * @return $this|bool
      * @throws \Exception
      */
-    public function session($sessionKey)
+    public function session(string $sessionKey): static
     {
         if (!$sessionKey) throw new \Exception("Session key is required.");
 
@@ -111,10 +87,8 @@ class Cart
 
     /**
      * get instance name of the cart
-     *
-     * @return string
      */
-    public function getInstanceName()
+    public function getInstanceName(): string
     {
         return $this->instanceName;
     }
@@ -132,11 +106,8 @@ class Cart
 
     /**
      * check if an item exists by item ID
-     *
-     * @param $itemId
-     * @return bool
      */
-    public function has($itemId)
+    public function has(mixed $itemId): bool
     {
         return $this->getContent()->has($itemId);
     }
@@ -144,17 +115,9 @@ class Cart
     /**
      * add item to the cart, it can be an array or multi dimensional array
      *
-     * @param string|array $id
-     * @param string $name
-     * @param float $price
-     * @param int $quantity
-     * @param array $attributes
-     * @param CartCondition|array $conditions
-     * @param string $associatedModel
-     * @return $this
      * @throws InvalidItemException
      */
-    public function add($id, $name = null, $price = null, $quantity = null, $attributes = array(), $conditions = array(), $associatedModel = null)
+    public function add(string|array $id, ?string $name = null, ?float $price = null, ?int $quantity = null, array $attributes = [], array $conditions = [], ?string $associatedModel = null): static
     {
         // if the first argument is an array,
         // we will need to call add again
@@ -168,8 +131,8 @@ class Cart
                         $item['name'],
                         $item['price'],
                         $item['quantity'],
-                        Helpers::issetAndHasValueOrAssignDefault($item['attributes'], array()),
-                        Helpers::issetAndHasValueOrAssignDefault($item['conditions'], array()),
+                        Helpers::issetAndHasValueOrAssignDefault($item['attributes'], []),
+                        Helpers::issetAndHasValueOrAssignDefault($item['conditions'], []),
                         Helpers::issetAndHasValueOrAssignDefault($item['associatedModel'], null)
                     );
                 }
@@ -179,8 +142,8 @@ class Cart
                     $id['name'],
                     $id['price'],
                     $id['quantity'],
-                    Helpers::issetAndHasValueOrAssignDefault($id['attributes'], array()),
-                    Helpers::issetAndHasValueOrAssignDefault($id['conditions'], array()),
+                    Helpers::issetAndHasValueOrAssignDefault($id['attributes'], []),
+                    Helpers::issetAndHasValueOrAssignDefault($id['conditions'], []),
                     Helpers::issetAndHasValueOrAssignDefault($id['associatedModel'], null)
                 );
             }
@@ -188,14 +151,14 @@ class Cart
             return $this;
         }
 
-        $data = array(
+        $data = [
             'id' => $id,
             'name' => $name,
             'price' => Helpers::normalizePrice($price),
             'quantity' => $quantity,
             'attributes' => new ItemAttributeCollection($attributes),
             'conditions' => $conditions
-        );
+        ];
 
         if (isset($associatedModel) && $associatedModel != '') {
             $data['associatedModel'] = $associatedModel;
@@ -224,14 +187,10 @@ class Cart
     /**
      * update a cart
      *
-     * @param $id
-     * @param array $data
-     *
      * the $data will be an associative array, you don't need to pass all the data, only the key value
      * of the item you want to update on it
-     * @return bool
      */
-    public function update($id, $data)
+    public function update(mixed $id, array $data): bool
     {
         if ($this->fireEvent('updating', $data) === false) {
             return false;
@@ -345,7 +304,7 @@ class Cart
 
         $this->session->put(
             $this->sessionKeyCartItems,
-            array()
+            []
         );
 
         $this->fireEvent('cleared');
@@ -506,7 +465,7 @@ class Cart
 
                 if ($item['conditions'] instanceof $conditionInstance) {
                     if ($tempConditionsHolder->getName() == $conditionName) {
-                        $item['conditions'] = array();
+                        $item['conditions'] = [];
                     }
                 }
             }
@@ -532,7 +491,7 @@ class Cart
         }
 
         $this->update($itemId, array(
-            'conditions' => array()
+            'conditions' => []
         ));
 
         return true;
@@ -549,7 +508,7 @@ class Cart
     {
         $this->session->put(
             $this->sessionKeyCartConditions,
-            array()
+            []
         );
     }
 

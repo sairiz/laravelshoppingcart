@@ -263,7 +263,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
             'conditions' => $condition1
         );
 
@@ -296,7 +296,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
             'conditions' => [$itemCondition1, $itemCondition2, $itemCondition3]
         );
 
@@ -330,7 +330,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
             'conditions' => [$itemCondition2, $itemCondition3]
         );
 
@@ -358,7 +358,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
             'conditions' => [$itemCondition2]
         );
 
@@ -419,7 +419,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
         );
 
         $this->cart->add($item);
@@ -455,7 +455,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
         );
 
         $this->cart->add($item);
@@ -491,7 +491,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
             'conditions' => [$itemCondition1, $itemCondition2]
         );
 
@@ -522,7 +522,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
             'conditions' => $itemCondition // <--not in array format
         );
 
@@ -556,7 +556,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
             'conditions' => [$itemCondition1, $itemCondition2]
         );
 
@@ -596,7 +596,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
         );
 
         $this->cart->add($item);
@@ -633,7 +633,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
         );
 
         $this->cart->add($item);
@@ -682,7 +682,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
         );
 
         $this->cart->add($item);
@@ -729,7 +729,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
         );
 
         $this->cart->add($item);
@@ -756,7 +756,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
         );
 
         $this->cart->add($item);
@@ -792,7 +792,7 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
             'name' => 'Sample Item 1',
             'price' => 100,
             'quantity' => 1,
-            'attributes' => array(),
+            'attributes' => [],
         );
 
         $this->cart->add($item);
@@ -896,21 +896,21 @@ class CartConditionTest extends PHPUnit\Framework\TestCase  {
                 'name' => 'Sample Item 1',
                 'price' => 67.99,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 568,
                 'name' => 'Sample Item 2',
                 'price' => 69.25,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
             array(
                 'id' => 856,
                 'name' => 'Sample Item 3',
                 'price' => 50.25,
                 'quantity' => 1,
-                'attributes' => array()
+                'attributes' => []
             ),
         );
 
