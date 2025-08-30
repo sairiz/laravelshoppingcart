@@ -1,9 +1,22 @@
-# Laravel 5 & 6 , 7 & 9 Shopping Cart
+# Laravel 10+ Shopping Cart with AI Development Support
 [![Build Status](https://travis-ci.org/darryldecode/laravelshoppingcart.svg?branch=master)](https://travis-ci.org/darryldecode/laravelshoppingcart)
 [![Total Downloads](https://poser.pugx.org/darryldecode/cart/d/total.svg)](https://packagist.org/packages/darryldecode/cart)
 [![License](https://poser.pugx.org/darryldecode/cart/license.svg)](https://packagist.org/packages/darryldecode/cart)
 
-A Shopping Cart Implementation for Laravel Framework
+A Shopping Cart Implementation for Laravel Framework with modern AI development support.
+
+## 🚀 NEW: AI Development Ready
+
+This package has been modernized to support AI-assisted development:
+- **Pest PHP v3** for elegant testing
+- **Laravel Boost** for AI development acceleration
+- **GitHub Copilot** compatibility
+- **Modern PHP 8.1+** and **Laravel 10+** support
+
+## Requirements
+
+- **PHP 8.1+**
+- **Laravel 10.0+**
 
 ## QUICK PARTIAL DEMO
 
@@ -15,13 +28,23 @@ Git repo of the demo: https://github.com/darryldecode/laravelshoppingcart-demo
 
 Install the package through [Composer](http://getcomposer.org/).
 
-For Laravel 5.1~:
-`composer require "darryldecode/cart:~2.0"`
+```bash
+composer require "darryldecode/cart"
+```
 
-For Laravel 5.5, 5.6, or 5.7~, 9:
+## Testing
 
-```composer require "darryldecode/cart:~4.0"``` or 
-```composer require "darryldecode/cart"```
+Run tests using Pest PHP:
+
+```bash
+composer test
+```
+
+Or run with coverage:
+
+```bash
+composer test-coverage
+```
 
 ## CONFIGURATION
 
