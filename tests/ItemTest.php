@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: darryl
- * Date: 3/18/2015
- * Time: 6:17 PM
- */
 
 use Darryldecode\Cart\Cart;
 use Mockery as m;
@@ -13,117 +7,96 @@ use Darryldecode\Tests\helpers\MockProduct;
 
 require_once __DIR__ . '/helpers/SessionMock.php';
 
-class ItemTest extends PHPUnit\Framework\TestCase
-{
+beforeEach(function () {
+    $events = m::mock('Illuminate\Contracts\Events\Dispatcher');
+    $events->shouldReceive('dispatch');
 
-    /**
-     * @var Darryldecode\Cart\Cart
-     */
-    protected $cart;
+    $this->cart = new Cart(
+        new SessionMock(),
+        $events,
+        'shopping',
+        'SAMPLESESSIONKEY',
+        require(__DIR__ . '/helpers/configMock.php')
+    );
+});
 
-    public function setUp(): void
-    {
-        $events = m::mock('Illuminate\Contracts\Events\Dispatcher');
-        $events->shouldReceive('dispatch');
+afterEach(function () {
+    m::close();
+});
 
-        $this->cart = new Cart(
-            new SessionMock(),
-            $events,
-            'shopping',
-            'SAMPLESESSIONKEY',
-            require(__DIR__ . '/helpers/configMock.php')
-        );
-    }
+it('can get item sum price using property', function () {
+    $this->cart->add(455, 'Sample Item', 100.99, 2, array());
 
-    public function tearDown(): void
-    {
-        m::close();
-    }
+    $item = $this->cart->get(455);
 
-    public function test_item_get_sum_price_using_property()
-    {
-        $this->cart->add(455, 'Sample Item', 100.99, 2, array());
+    expect($item->getPriceSum())->toBe(201.98, 'Item summed price should be 201.98');
+});
 
-        $item = $this->cart->get(455);
+it('can get item sum price using array style', function () {
+    $this->cart->add(455, 'Sample Item', 100.99, 2, array());
 
-        $this->assertEquals(201.98, $item->getPriceSum(), 'Item summed price should be 201.98');
-    }
+    $item = $this->cart->get(455);
 
-    public function test_item_get_sum_price_using_array_style()
-    {
-        $this->cart->add(455, 'Sample Item', 100.99, 2, array());
+    expect($item->getPriceSum())->toBe(201.98, 'Item summed price should be 201.98');
+});
 
-        $item = $this->cart->get(455);
+it('returns empty conditions when item has no conditions', function () {
+    $this->cart->add(455, 'Sample Item', 100.99, 2, array());
 
-        $this->assertEquals(201.98, $item->getPriceSum(), 'Item summed price should be 201.98');
-    }
+    $item = $this->cart->get(455);
 
-    public function test_item_get_conditions_empty()
-    {
-        $this->cart->add(455, 'Sample Item', 100.99, 2, array());
+    expect($item->getConditions())->toBeEmpty('Item should have no conditions');
+});
 
-        $item = $this->cart->get(455);
+it('can get item conditions when item has conditions', function () {
+    $itemCondition1 = new \Darryldecode\Cart\CartCondition(array(
+        'name' => 'SALE 5%',
+        'type' => 'sale',
+        'target' => 'item',
+        'value' => '-5%',
+    ));
 
-        $this->assertEmpty($item->getConditions(), 'Item should have no conditions');
-    }
+    $itemCondition2 = new CartCondition(array(
+        'name' => 'Item Gift Pack 25.00',
+        'type' => 'promo',
+        'target' => 'item',
+        'value' => '-25',
+    ));
 
-    public function test_item_get_conditions_with_conditions()
-    {
-        $itemCondition1 = new \Darryldecode\Cart\CartCondition(array(
-            'name' => 'SALE 5%',
-            'type' => 'sale',
-            'target' => 'item',
-            'value' => '-5%',
-        ));
+    $this->cart->add(455, 'Sample Item', 100.99, 2, array(), [$itemCondition1, $itemCondition2]);
 
-        $itemCondition2 = new CartCondition(array(
-            'name' => 'Item Gift Pack 25.00',
-            'type' => 'promo',
-            'target' => 'item',
-            'value' => '-25',
-        ));
+    $item = $this->cart->get(455);
 
-        $this->cart->add(455, 'Sample Item', 100.99, 2, array(), [$itemCondition1, $itemCondition2]);
+    expect($item->getConditions())->toHaveCount(2, 'Item should have two conditions');
+});
 
-        $item = $this->cart->get(455);
+it('can associate model to item', function () {
+    $this->cart->add(455, 'Sample Item', 100.99, 2, array())->associate(MockProduct::class);
 
-        $this->assertCount(2, $item->getConditions(), 'Item should have two conditions');
-    }
+    $item = $this->cart->get(455);
 
-    public function test_item_associate_model()
-    {
-        $this->cart->add(455, 'Sample Item', 100.99, 2, array())->associate(MockProduct::class);
+    expect($item->associatedModel)->toBe(MockProduct::class, 'Item assocaited model should be ' . MockProduct::class);
+});
 
-        $item = $this->cart->get(455);
+it('throws exception when associating non-existing model', function () {
+    expect(fn() => $this->cart->add(1, 'Test item', 1, 10.00)->associate('SomeModel'))
+        ->toThrow(\Darryldecode\Cart\Exceptions\UnknownModelException::class, 'The supplied model SomeModel does not exist.');
+});
 
-        $this->assertEquals(MockProduct::class, $item->associatedModel, 'Item assocaited model should be ' . MockProduct::class);
-    }
+it('can get associated model instance', function () {
+    $this->cart->add(455, 'Sample Item', 100.99, 2, array())->associate(MockProduct::class);
 
-    public function test_it_will_throw_an_exception_when_a_non_existing_model_is_being_associated()
-    {
-        $this->expectException(\Darryldecode\Cart\Exceptions\UnknownModelException::class);
-        $this->expectExceptionMessage('The supplied model SomeModel does not exist.');
+    $item = $this->cart->get(455);
 
-        $this->cart->add(1, 'Test item', 1, 10.00)->associate('SomeModel');
-    }
+    expect($item->model)->toBeInstanceOf(MockProduct::class);
+    expect($item->model->name)->toBe('Sample Item');
+    expect($item->model->id)->toBe(455);
+});
 
-    public function test_item_get_model()
-    {
-        $this->cart->add(455, 'Sample Item', 100.99, 2, array())->associate(MockProduct::class);
+it('returns null model when item has no associated model', function () {
+    $this->cart->add(455, 'Sample Item', 100.99, 2, array());
 
-        $item = $this->cart->get(455);
+    $item = $this->cart->get(455);
 
-        $this->assertInstanceOf(MockProduct::class, $item->model);
-        $this->assertEquals('Sample Item', $item->model->name);
-        $this->assertEquals(455, $item->model->id);
-    }
-
-    public function test_item_get_model_will_return_null_if_it_has_no_model()
-    {
-        $this->cart->add(455, 'Sample Item', 100.99, 2, array());
-
-        $item = $this->cart->get(455);
-
-        $this->assertEquals(null, $item->model);
-    }
-}
+    expect($item->model)->toBeNull();
+});

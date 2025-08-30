@@ -26,6 +26,11 @@
             "Darryldecode\\": "src/Darryldecode"
         }
     },
+    "autoload-dev": {
+        "psr-4": {
+            "Darryldecode\\Tests\\": "tests/"
+        }
+    },
     "scripts": {
         "test": "pest",
         "test-coverage": "pest --coverage"
